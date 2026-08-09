@@ -1,5 +1,5 @@
 import { execFile } from 'node:child_process'
-import { mkdtemp, mkdir, readdir, rm } from 'node:fs/promises'
+import { access, mkdtemp, mkdir, readdir, rm } from 'node:fs/promises'
 import { promisify } from 'node:util'
 import os from 'node:os'
 import path from 'node:path'
@@ -11,7 +11,6 @@ const outputDirectory = path.join(sourceDirectory, 'optimized')
 const supportedImage = /\.(avif|gif|heic|heif|jpe?g|png|webp)$/i
 const heicImage = /\.(heic|heif)$/i
 
-await rm(outputDirectory, { recursive: true, force: true })
 await mkdir(outputDirectory, { recursive: true })
 
 const files = await readdir(sourceDirectory, { withFileTypes: true })
@@ -23,6 +22,18 @@ for (const image of images) {
   let temporaryDirectory
 
   try {
+    // Keep completed output files so prebuild only processes newly added images.
+    // A matching output means a previous run succeeded, so its source can be
+    // safely cleared if it was left behind by an interrupted cleanup.
+    try {
+      await access(output)
+      await rm(input)
+      console.log(`Skipped ${image.name}; optimized file already exists`)
+      continue
+    } catch {
+      // The image has not yet been optimized.
+    }
+
     let processableInput = input
 
     // sharp's HEIC decoder rejects some valid iPhone files. Convert those with
@@ -38,6 +49,7 @@ for (const image of images) {
       .resize({ width: 1400, height: 1400, fit: 'inside', withoutEnlargement: true })
       .webp({ quality: 78, effort: 5 })
       .toFile(output)
+    await rm(input)
     console.log(`Optimized ${image.name}`)
   } catch (error) {
     console.warn(`Skipped ${image.name}: ${error.message}`)
