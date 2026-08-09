@@ -4,7 +4,7 @@ import { bookingUrl } from './SiteLayout'
 import './App.css'
 
 const affiliations = ['PRU LIFE UK', 'eastspring investments', 'PRUDENTIAL', 'M&G Investments', 'JACKSON', 'ATRAM']
-const uploadedCareerAlbumImages = Object.entries(import.meta.glob('./assets/career-album/*', { eager: true, query: '?url', import: 'default' }))
+const uploadedCareerAlbumImages = Object.entries(import.meta.glob('./assets/career-album/optimized/*', { eager: true, query: '?url', import: 'default' }))
   .filter(([path]) => /\.(avif|gif|jpe?g|png|webp)$/i.test(path))
   .sort(([firstPath], [secondPath]) => firstPath.localeCompare(secondPath))
   .map(([, image]) => image as string)
