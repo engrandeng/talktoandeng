@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Poppins:wght@400;500;600;700&display=swap');
+
+:root { font-family: 'DM Sans', Arial, sans-serif; color: #351018; background: #fff7f7; font-synthesis: none; text-rendering: optimizeLegibility; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; }
+a { color: inherit; }
+
+/* Pru Life UK-inspired palette */
+:root {
+	--pru-red: #e8192c;
+	--pru-deep-red: #870019;
+	--pru-wine: #5c0010;
+	--pru-blush: #f9e6e8;
+	--pru-soft: #fff7f7;
+	--pru-ink: #351018;
+}
+
+.hero { background-image: linear-gradient(90deg, rgba(92, 0, 16, .84), rgba(92, 0, 16, .28)), url('https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=2200&q=90'); }
+.site-header { background: rgba(92, 0, 16, .92); }
+.button-light { color: var(--pru-wine); }
+.button-dark { color: #fff; background: var(--pru-deep-red); }
+.text-link.dark { color: var(--pru-deep-red); }
+
+.intro h2,
+.recruit h2,
+.connect h2,
+.planner-heading h2,
+.rates h2,
+.assessment-card h2,
+.content-grid h2,
+.page-cta h2,
+.policy-content h2 { color: var(--pru-wine); }
+.planner,
+.budget-callout,
+.assessment-page { background: var(--pru-blush); }
+.calculator-card,
+.rates,
+.company-value,
+.solution-grid article,
+.purpose,
+footer,
+.assessment-hero,
+.report-summary,
+.gap-callout { background-color: var(--pru-wine); }
+.calculator-card { box-shadow: 10px 12px 0 #e7b8be; }
+.calculator-tabs button.active { border-color: #ff8b96; }
+.calculator-body input { outline-color: #ff8b96; }
+.currency-input > span,
+.calculator-group,
+.company-kicker,
+.solution-grid span,
+.assessment-steps .active,
+.report-summary strong { color: #ff9ca5; }
+.calculation-result { color: var(--pru-wine); background: #fff7f7; }
+.rates th { background: var(--pru-wine); }
+td:nth-child(3) { color: #ff9ca5; }
+.moving-gallery { background: #f6e1e3; }
+.connect,
+.page-cta { background: var(--pru-red); }
+.recruit,
+.inner-page { background: var(--pru-soft); }
+.recruit ul { border-color: #d7a8af; }
+.recruit li { border-color: #d7a8af; }
+.assessment-card { background: #fffafa; box-shadow: 12px 14px 0 #e7b8be; }
+.question-count,
+.value-grid span { color: var(--pru-red); }
+.answer-options button { color: var(--pru-wine); background: var(--pru-blush); }
+.answer-options button:hover { background: var(--pru-deep-red); }
+.assessment-note,
+.question-hint,
+.report-disclaimer,
+.math-table small { color: #83515a; }
+.gap-callout { background: var(--pru-red); }
+.math-table .total,
+.text-button { color: var(--pru-deep-red); }
+.report-form { background: var(--pru-blush); }
+.page-intro { background-image: linear-gradient(120deg, rgba(92, 0, 16, .94), rgba(135, 0, 25, .72)), url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=2200&q=90'); }
+.value-grid { background: #e8bdc3; }
+.value-grid article { background: #fceff0; }
+.page-cta .button { color: #fff; background: var(--pru-wine); }
