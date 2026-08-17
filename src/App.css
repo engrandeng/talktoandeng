@@ -73,7 +73,7 @@ footer { display: grid; grid-template-columns: 1.2fr .8fr 1fr; gap: 30px; color:
 .recruit ul, .recruit li { border-color: #d7a8af; }.assessment-card { background: #fffafa; box-shadow: 12px 14px 0 #e7b8be; }
 .question-count, .value-grid span { color: var(--pru-red); }.answer-options button { color: var(--pru-navy); background: var(--pru-blush); }.answer-options button:hover { background: var(--pru-navy); }
 .assessment-note, .question-hint, .report-disclaimer, .math-table small { color: #69566d; }.math-table .total, .text-button { color: var(--pru-navy); }
-.report-form { background: var(--pru-blush); }.page-intro { background-image: linear-gradient(120deg, rgba(4, 19, 47, .96), rgba(7, 29, 73, .78)), url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=2200&q=90'); }
+.report-form { background: var(--pru-blush); }.page-intro { background-image: linear-gradient(120deg, rgba(4, 19, 47, .96), rgba(7, 29, 73, .78)), var(--page-hero-image); }
 .value-grid { background: #e8bdc3; }.value-grid article { background: #fceff0; }.page-cta .button { color: #fff; background: var(--pru-red); }
 .page-cta-copy { max-width: 520px; margin: -18px 0 32px; color: rgba(255, 255, 255, .8); font-size: 16px; line-height: 1.65; }
 .about-profile { display: grid; grid-template-columns: minmax(260px, .7fr) 1fr; gap: clamp(40px, 9vw, 140px); align-items: center; padding: clamp(70px, 9vw, 130px) clamp(20px, 10vw, 150px); color: var(--pru-navy); background: var(--pru-soft); }.about-profile figure { align-self: stretch; min-height: 460px; margin: 0; overflow: hidden; background: var(--pru-blush); }.about-profile img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center top; }.about-profile h2 { margin: 18px 0 24px; font: 600 clamp(44px, 5vw, 72px)/.98 'Playfair Display', Georgia, serif; letter-spacing: -.05em; }.about-profile > div > p:not(.section-label) { max-width: 550px; font-size: 17px; line-height: 1.7; }.about-profile > div > .about-profile-stats { margin-top: 23px; color: var(--pru-navy); font-size: 14px; line-height: 1.7; }.about-profile-stats strong { color: var(--pru-red); font-weight: 800; }.about-profile > div > p.about-profile-credentials { padding-top: 16px; margin-top: 22px; color: var(--pru-red); font: 700 10px/1.7 'DM Mono', monospace; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; border-top: 1px solid #e7b8be; }
@@ -272,7 +272,7 @@ th,
 .booking-benefits li { padding: 16px 0; border-bottom: 1px solid #e7b8be; font-size: 14px; font-weight: 600; }
 .booking-form { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; padding: clamp(25px, 4vw, 45px); background: var(--pru-blush); }
 .booking-form label { display: grid; gap: 8px; font-size: 11px; font-weight: 700; }
-.booking-form input, .booking-form select { width: 100%; padding: 12px 0; color: var(--pru-navy); font: 15px 'DM Sans', sans-serif; background: transparent; border: 0; border-bottom: 1px solid #d7a8af; }
+.booking-form input:not([type="checkbox"]), .booking-form select { width: 100%; height: 48px; box-sizing: border-box; padding: 0; color: var(--pru-navy); font: 15px 'DM Sans', sans-serif; background: transparent; border: 0; border-bottom: 1px solid #d7a8af; }
 .booking-form .consent, .booking-form .button, .booking-form .form-feedback, .booking-confirmation { grid-column: 1 / -1; }
 .booking-form .consent { display: flex; align-items: start; font-weight: 400; line-height: 1.5; }
 .booking-form .consent input { width: auto; margin: 3px 9px 0 0; accent-color: var(--pru-red); }
@@ -640,6 +640,10 @@ th,
 .site-header { padding-inline: var(--header-gutter); }
 .hero { padding-inline: var(--header-gutter); }
 footer, .site-footer { padding-inline: var(--page-gutter); }
+
+/* CTA panels use a dark background, so their headline must remain high contrast. */
+.page-cta h2,
+.page-cta h2 em { color: #fff; }
 
 .intro, .recruit,
 .planner, .rates,
