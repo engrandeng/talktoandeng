@@ -1,7 +1,10 @@
 import { Link, Outlet, useLocation } from 'react-router-dom'
-import { useState } from 'react'
-import type { ReactNode } from 'react'
+import { useEffect, useState } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 import portrait from '../images/Portrait-2 copy.png'
+
+const heroImageFiles = import.meta.glob('../images/Hero {1,2,3}.*', { eager: true, query: '?url', import: 'default' }) as Record<string, string>
+const heroImage = (name: string) => Object.entries(heroImageFiles).find(([path]) => path.endsWith(name))?.[1] ?? ''
 
 function Arrow() {
   return <span aria-hidden="true">↗</span>
@@ -9,9 +12,33 @@ function Arrow() {
 
 export const bookingUrl = import.meta.env.VITE_BOOKING_URL || 'https://calendar.google.com/calendar/u/0/r/eventedit'
 
+const pageHeroImages = [heroImage('Hero 1.jpg'), heroImage('Hero 2.JPG'), heroImage('Hero 3.jpg')]
+const pageHeroOrder: Record<string, number> = {
+  '/about': 1,
+  '/career': 2,
+  '/faq': 0,
+  '/contact': 1,
+  '/book': 2,
+  '/assessment': 0,
+  '/privacy-policy': 1,
+}
+const pageTitles: Record<string, string> = {
+  '/': 'Home',
+  '/about': 'About',
+  '/assessment': 'Free Assessment',
+  '/career': 'Career',
+  '/faq': 'FAQ',
+  '/contact': 'Contact',
+  '/book': 'Book a Call',
+  '/privacy-policy': 'Privacy Policy',
+}
+
 export function PageIntro({ eyebrow, title, children }: { eyebrow: string; title: ReactNode; children: ReactNode }) {
+  const { pathname } = useLocation()
+  const heroImage = pageHeroImages[pageHeroOrder[pathname] ?? 0]
+
   return (
-    <section className="page-intro">
+    <section className="page-intro" style={{ '--page-hero-image': `url("${heroImage}")` } as CSSProperties}>
       <p className="section-label">{eyebrow}</p>
       <h1>{title}</h1>
       <div className="page-intro-copy">{children}</div>
@@ -22,6 +49,10 @@ export function PageIntro({ eyebrow, title, children }: { eyebrow: string; title
 export default function SiteLayout() {
   const { pathname } = useLocation()
   const [contactMenuOpen, setContactMenuOpen] = useState(false)
+
+  useEffect(() => {
+    document.title = `${pageTitles[pathname] ?? 'Page'} | Talk to Andeng`
+  }, [pathname])
 
   return (
     <>
